@@ -3,7 +3,7 @@ const url = 'https://jsonplaceholder.typicode.com/posts'
 const contenedor = document.querySelector('tbody')
 let resultados = ''
 
-const modalArticulo = new bootstrap.Modal(document.getElementById('modalArticulo'))
+const modalPost = new bootstrap.Modal(document.getElementById('modalPost'))
 const formArticulo = document.querySelector('form')
 const idUsuario = document.getElementById('iduser')
 const titulo = document.getElementById('titulo')
@@ -14,27 +14,27 @@ botonCrear.addEventListener('click', ()=>{
     idUsuario.value = ''
     titulo.value = ''
     descripcion.value = ''
-	modalArticulo.show()
-	opcion = 'crear'
+    modalPost.show()
+    opcion = 'crear'
 })
 
 //Funcion para mostrar
-const mostrar = (articulos) => {
-	articulos.forEach(articulo => {
-	resultados += `
+const mostrar = (posts) => {
+    posts.forEach(post => {
+    resultados += `
                   <tr>
-                      <td>${articulo.userId}</td>
-                      <td>${articulo.id}</td>
-                      <td>${articulo.title}</td>
-                      <td>${articulo.body}</td>
+                      <td>${post.userId}</td>
+                      <td>${post.id}</td>
+                      <td>${post.title}</td>
+                      <td>${post.body}</td>
                       <td>
                       <a class="botonEditar btn btn-primary">Editar</a><br><br>
                       <a class="botonBorrar btn btn-danger">Borrar</a>
                       </td>
                   </tr>
-	              `
-	})
-	contenedor.innerHTML = resultados
+                  `
+    })
+    contenedor.innerHTML = resultados
 }
 
 //Procedimiento Mostrar
@@ -44,19 +44,19 @@ fetch(url)
 .catch( error => console.log(error) )
 
 const on = (element, event, selector, handler) => {
-	element.addEventListener(event, e => {
-		if (e.target.closest(selector)) {
+    element.addEventListener(event, e => {
+        if (e.target.closest(selector)) {
              handler(e)
-		}
-	})
+        }
+    })
 }
 
 //Procedimiento Borrar
 on(document, 'click', '.botonBorrar', e => {
-	const fila = e.target.parentNode.parentNode
-	const id = fila.firstElementChild.innerHTML
+    const fila = e.target.parentNode.parentNode
+    const id = fila.firstElementChild.innerHTML
 
-	alertify.confirm("Confirmar...",
+    alertify.confirm("Confirmar...",
      function(){
       fetch(url+id, {
          method: 'DELETE'
@@ -81,8 +81,8 @@ on(document, 'click', '.botonEditar', e => {
     idUsuario.value = userIdFormulario
     titulo.value = titleFormulario
     descripcion.value = descripcionFormulario
-	opcion = 'editar'
-	modalArticulo.show()
+    opcion = 'editar'
+    modalPost.show()
 })
 
 //Procedimiento Crear y Editar
@@ -123,5 +123,5 @@ formArticulo.addEventListener('submit', (e)=>{
         .then( response => response.json() )
         .then( response => location.reload())
     }
-    modalArticulo.hide()
+    modalPost.hide()
 })
