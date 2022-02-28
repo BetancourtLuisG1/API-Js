@@ -28,7 +28,7 @@ const mostrar = (articulos) => {
                       <td>${articulo.title}</td>
                       <td>${articulo.body}</td>
                       <td>
-                      <a class="botonEditar btn btn-primary">Editar</a>
+                      <a class="botonEditar btn btn-primary">Editar</a><br><br>
                       <a class="botonBorrar btn btn-danger">Borrar</a>
                       </td>
                   </tr>
@@ -83,7 +83,7 @@ on(document, 'click', '.botonEditar', e => {
     descripcion.value = descripcionFormulario
 	opcion = 'editar'
 	modalArticulo.show()
-});
+})
 
 //Procedimiento Crear y Editar
 formArticulo.addEventListener('submit', (e)=>{
