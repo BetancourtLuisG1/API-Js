@@ -4,7 +4,7 @@ const contenedor = document.querySelector('tbody')
 let resultados = ''
 
 const modalPost = new bootstrap.Modal(document.getElementById('modalPost'))
-const formArticulo = document.querySelector('form')
+const formPost = document.querySelector('form')
 const idUsuario = document.getElementById('iduser')
 const titulo = document.getElementById('titulo')
 const descripcion = document.getElementById('description')
@@ -86,7 +86,7 @@ on(document, 'click', '.botonEditar', e => {
 })
 
 //Procedimiento Crear y Editar
-formArticulo.addEventListener('submit', (e)=>{
+formPost.addEventListener('submit', (e)=>{
     e.preventDefault()
     if (opcion=='crear') {
         fetch(url,{
@@ -102,9 +102,9 @@ formArticulo.addEventListener('submit', (e)=>{
         })
         .then( response => response.json() )
         .then( data => {
-             const nuevoArticulo = []
-             nuevoArticulo.push(data)
-             mostrar(nuevoArticulo)
+             const nuevoPost = []
+             nuevoPost.push(data)
+             mostrar(nuevoPost)
         })
 
     }
