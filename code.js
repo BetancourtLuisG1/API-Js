@@ -23,8 +23,8 @@ const mostrar = (posts) => {
     posts.forEach(post => {
     resultados += `
                   <tr>
-                      <td>${post.userId}</td>
                       <td>${post.id}</td>
+                      <td>${post.userId}</td>
                       <td>${post.title}</td>
                       <td>${post.body}</td>
                       <td>
